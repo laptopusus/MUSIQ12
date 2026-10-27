@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUSIC ROOM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 5.2" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
+
+<section id="auth">
+  <div class="brand"><span class="tape"></span><span data-brand>MUSIC ROOM</span></div>
+  <div class="hero">
+    <span class="star l" aria-hidden="true">✦</span><span class="star r" aria-hidden="true">✦</span>
+    <h1 class="title" aria-label="MUSIC">MUS<svg viewBox="0 0 60 160" aria-hidden="true"><rect x="27" y="0" width="6" height="96" fill="#161213"/><rect x="22" y="0" width="16" height="16" rx="4" fill="#161213"/><path d="M30 80c-10-12-22 0-18 14 4 10-8 16-6 36 2 20 48 20 48 0 2-20-10-26-6-36 4-14-8-26-18-14z" fill="#161213"/><rect x="22" y="104" width="16" height="10" fill="#fffdf8"/></svg>C</h1>
+    <form id="authForm" class="card" novalidate>
+      <h2 id="authTitle">Log in</h2>
+      <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
+      <div id="pwRow"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" minlength="6"></div>
+      <p class="err" id="authErr" role="alert"></p>
+      <button class="btn" id="authBtn" style="width:100%">Log in</button>
+      <div class="links"><button type="button" class="link" id="toSignup">Create account</button><button type="button" class="link" id="toReset">Forgot password?</button></div>
+    </form>
+  </div>
+  <div class="words"><span>Rhythm</span><span>Culture</span><span>Emotion</span></div>
+</section>
+
+<div id="app" hidden>
+  <aside aria-label="Library">
+    <div class="logo" data-brand>MUSIC ROOM</div>
+    <button class="nav" data-view="all">All songs</button>
+    <button class="nav" data-view="fav">Favorites</button>
+    <button class="nav" data-view="recent">Recently played</button>
+    <h3>Playlists <button class="icon" id="newPl" aria-label="New playlist">＋</button></h3>
+    <div id="plNav"></div>
+    <button class="nav" id="logout" style="margin-top:auto">Log out</button>
+  </aside>
+  <main id="main" tabindex="-1"></main>
+  <footer id="player" aria-label="Player">
+    <div class="info"><b id="pTitle">Nothing playing</b><small id="pArtist" class="dim">Pick a song to start</small></div>
+    <div>
+      <div class="ctl">
+        <button class="icon" id="bShuf" aria-label="Shuffle">⇄</button>
+        <button class="icon" id="bPrev" aria-label="Previous">⏮</button>
+        <button class="icon play" id="bPlay" aria-label="Play">▶</button>
+        <button class="icon" id="bNext" aria-label="Next">⏭</button>
+        <button class="icon" id="bRep" aria-label="Repeat off">↻</button>
+      </div>
+      <div class="seek"><span id="tCur">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek" style="flex:1"><span id="tDur">0:00</span></div>
+    </div>
+    <div class="vol"><button class="icon" id="bMute" aria-label="Mute">🔊</button><input id="vol" type="range" min="0" max="1" step=".01" value=".8" aria-label="Volume"></div>
+  </footer>
+</div>
+
+<dialog id="up">
+  <h2 style="margin-top:0">Upload music</h2>
+  <div class="drop" id="drop">Drop audio files here or <button class="link" id="pick" type="button">choose files</button>
+    <input id="files" type="file" accept="audio/*,.mp3,.m4a,.aac,.ogg,.wav,.flac" multiple hidden></div>
+  <ul id="ulist"></ul>
+  <button class="btn ghost" id="upClose" type="button">Close</button>
+</dialog>
+<dialog id="plPick"><h2 style="margin-top:0">Add to playlist</h2><div id="plPickList"></div><button class="btn ghost" id="plPickClose" type="button">Cancel</button></dialog>
+<div id="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
